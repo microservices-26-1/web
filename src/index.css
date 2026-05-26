@@ -117,7 +117,3 @@
     @apply tracking-tight;
   }
 }
-
-html {
-    scroll-behavior: smooth;
-}
