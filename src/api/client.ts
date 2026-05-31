@@ -1,6 +1,6 @@
 import { Product, Order, ExchangeRate, CartItem } from "@/types";
 
-const API = "/api";
+const API = "http://a6c921684d53b4c6cbd9ea9ae98dad94-1227256263.us-east-1.elb.amazonaws.com";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const res = await fetch(`${API}${path}`, {

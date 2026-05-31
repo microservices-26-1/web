@@ -1,8 +1,0 @@
-{
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "http://a6c921684d53b4c6cbd9ea9ae98dad94-1227256263.us-east-1.elb.amazonaws.com/$1"
-    }
-  ]
-}
