@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { CartItem } from "@/types";
 
-const API = "http://a6c921684d53b4c6cbd9ea9ae98dad94-1227256263.us-east-1.elb.amazonaws.com";
+const API = "/api";
 
 interface CartContextValue {
   items: CartItem[];
