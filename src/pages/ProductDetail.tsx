@@ -21,7 +21,7 @@ const ProductDetail = () => {
   });
 
   useEffect(() => {
-    if (product) document.title = `${product.name} — Nimbus`;
+    if (product) document.title = `${product.name} — Maison Doce`;
   }, [product]);
 
   if (isLoading) {
@@ -42,9 +42,9 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="container py-24 text-center">
-        <h1 className="text-2xl font-semibold">Produto não encontrado</h1>
+        <h1 className="text-2xl font-semibold">Doce não encontrado</h1>
         <Button asChild className="mt-6 rounded-full">
-          <Link to="/">Voltar ao catálogo</Link>
+          <Link to="/">Voltar à vitrine</Link>
         </Button>
       </div>
     );
@@ -67,7 +67,7 @@ const ProductDetail = () => {
         className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
-        Catálogo
+        Vitrine
       </Link>
 
       <div className="grid gap-12 md:grid-cols-2 md:gap-16">
@@ -113,11 +113,11 @@ const ProductDetail = () => {
               <>
                 <Check className="h-4 w-4 text-success" />
                 <span className="text-muted-foreground">
-                  {product.stock} unidades em estoque
+                  {product.stock} unidades disponíveis hoje
                 </span>
               </>
             ) : (
-              <span className="text-destructive">Sem estoque no momento</span>
+              <span className="text-destructive">Esgotado por hoje</span>
             )}
           </div>
 
@@ -144,20 +144,20 @@ const ProductDetail = () => {
 
           <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-border/60 pt-8 text-sm">
             <div>
-              <dt className="text-muted-foreground">SKU</dt>
+              <dt className="text-muted-foreground">Código</dt>
               <dd className="mt-1 font-mono">{product.id}</dd>
             </div>
             <div>
-              <dt className="text-muted-foreground">Garantia</dt>
-              <dd className="mt-1">12 meses</dd>
+              <dt className="text-muted-foreground">Validade</dt>
+              <dd className="mt-1">Até 5 dias refrigerado</dd>
             </div>
             <div>
-              <dt className="text-muted-foreground">Envio</dt>
-              <dd className="mt-1">Grátis acima de $200</dd>
+              <dt className="text-muted-foreground">Entrega</dt>
+              <dd className="mt-1">Grátis acima de R$ 150</dd>
             </div>
             <div>
-              <dt className="text-muted-foreground">Devolução</dt>
-              <dd className="mt-1">30 dias</dd>
+              <dt className="text-muted-foreground">Preparo</dt>
+              <dd className="mt-1">Feito no dia do pedido</dd>
             </div>
           </dl>
         </div>

@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { CartItem } from "@/types";
 
+const API = "http://a6c921684d53b4c6cbd9ea9ae98dad94-1227256263.us-east-1.elb.amazonaws.com";
+
 interface CartContextValue {
   items: CartItem[];
   add: (productId: string, quantity?: number) => void;
@@ -8,10 +10,11 @@ interface CartContextValue {
   setQuantity: (productId: string, quantity: number) => void;
   clear: () => void;
   count: number;
+  checkout: () => Promise<{ error: string | null }>;  // ← novo
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
-const STORAGE_KEY = "nimbus.cart";
+const STORAGE_KEY = "doceria.cart";
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() => {
@@ -49,6 +52,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
         ),
       clear: () => setItems([]),
       count: items.reduce((s, i) => s + i.quantity, 0),
+
+      checkout: async () => {                          // ← novo
+        try {
+          const res = await fetch(`${API}/orders`, {
+            method: "POST",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              items: items.map((i) => ({
+                idProduct: i.productId,
+                quantity: i.quantity,
+              })),
+            }),
+          });
+          if (!res.ok) return { error: "Erro ao finalizar pedido" };
+          setItems([]);                                // limpa o carrinho após sucesso
+          return { error: null };
+        } catch {
+          return { error: "Erro de conexão" };
+        }
+      },
     }),
     [items]
   );

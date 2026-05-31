@@ -18,7 +18,7 @@ export default function Forbidden() {
       </p>
       <div className="mt-8 flex gap-3">
         <Button asChild variant="outline">
-          <Link to="/">Voltar ao catálogo</Link>
+          <Link to="/">Voltar à vitrine</Link>
         </Button>
         <Button asChild>
           <Link to="/orders">Meus pedidos</Link>

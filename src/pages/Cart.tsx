@@ -44,7 +44,7 @@ const Cart = () => {
       : [];
 
   const subtotal = lines.reduce((s, l) => s + (l!.price * l!.quantity), 0);
-  const shipping = subtotal > 200 || subtotal === 0 ? 0 : 15;
+  const shipping = subtotal > 150 || subtotal === 0 ? 0 : 15;
   const total = subtotal + shipping;
 
   if (items.length === 0) {
@@ -55,10 +55,10 @@ const Cart = () => {
         </div>
         <h1 className="mt-6 font-display text-2xl font-semibold">Seu carrinho está vazio</h1>
         <p className="mt-2 text-muted-foreground">
-          Explore o catálogo e adicione produtos para continuar.
+          Explore a vitrine e adicione doces para continuar.
         </p>
         <Button asChild className="mt-8 rounded-full px-6">
-          <Link to="/">Ver catálogo</Link>
+          <Link to="/">Ver vitrine</Link>
         </Button>
       </div>
     );

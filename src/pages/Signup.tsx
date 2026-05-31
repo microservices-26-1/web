@@ -8,36 +8,33 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 
 const schema = z.object({
-    email: z.string().trim().email("Email inválido").max(255),
-    password: z.string().min(6, "Mínimo de 6 caracteres").max(72),
-  });
+  name: z.string().trim().min(2, "Nome muito curto").max(100), 
+  email: z.string().trim().email("Email inválido").max(255),
+  password: z.string().min(6, "Mínimo de 6 caracteres").max(72),
+});
 
-  export default function Signup() {
-    const { signUp } = useAuth();
-    const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [submitting, setSubmitting] = useState(false);
+export default function Signup() {
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState(""); 
+  const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-    const onSubmit = async (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ email, password });
+    const parsed = schema.safeParse({ name, email, password });  // ← inclui name
     if (!parsed.success) {
       toast({ title: "Verifique os campos", description: parsed.error.issues[0].message, variant: "destructive" });
       return;
     }
     setSubmitting(true);
-
-    const { error } = await signUp(email, password, name); // ← usa o contexto
-
+    const { error } = await signUp(parsed.data.email, parsed.data.password, parsed.data.name); // ← passa name
     setSubmitting(false);
-
     if (error) {
       toast({ title: "Não foi possível criar conta", description: error, variant: "destructive" });
       return;
     }
-
     toast({ title: "Conta criada", description: "Você já pode navegar pela loja." });
     navigate("/", { replace: true });
   };
@@ -51,11 +48,11 @@ const schema = z.object({
         </div>
 
         <form onSubmit={onSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
+          <div className="space-y-2">                     
+            <Label htmlFor="name">Nome</Label>
             <Input
               id="name"
-              type="name"
+              type="text"
               autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}

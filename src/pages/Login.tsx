@@ -8,21 +8,21 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 
 const schema = z.object({
-    email: z.string().trim().email("Email inválido").max(255),
-    password: z.string().min(6, "Mínimo de 6 caracteres").max(72),
-  });
+  email: z.string().trim().email("Email inválido").max(255),
+  password: z.string().min(6, "Mínimo de 6 caracteres").max(72),
+});
 
-  export default function Login() {
-    const { signIn } = useAuth();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [submitting, setSubmitting] = useState(false);
+export default function Login() {
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-    const from = (location.state as { from?: string } | null)?.from ?? "/";
+  const from = (location.state as { from?: string } | null)?.from ?? "/";
 
-    const onSubmit = async (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse({ email, password });
     if (!parsed.success) {
@@ -30,16 +30,12 @@ const schema = z.object({
       return;
     }
     setSubmitting(true);
-
-    const { error } = await signIn(email, password); // ← usa o contexto
-
+    const { error } = await signIn(parsed.data.email, parsed.data.password);
     setSubmitting(false);
-
     if (error) {
       toast({ title: "Não foi possível entrar", description: error, variant: "destructive" });
       return;
     }
-
     toast({ title: "Bem-vindo de volta" });
     navigate(from, { replace: true });
   };

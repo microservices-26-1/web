@@ -33,7 +33,7 @@ const Index = () => {
   }, [products, query, activeCategory]);
 
   useEffect(() => {
-    document.title = "Nimbus — Loja de tecnologia minimalista";
+    document.title = "Maison Doce — Doceria artesanal";
   }, []);
 
   return (
@@ -43,19 +43,19 @@ const Index = () => {
         <div className="container grid gap-10 py-16 md:grid-cols-2 md:items-center md:py-24">
           <div className="space-y-6 animate-fade-in">
             <span className="inline-flex items-center rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground">
-              Nova coleção · Outono
+              Feito no dia · Receitas artesanais
             </span>
             <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-6xl">
-              Tecnologia que<br />simplesmente funciona.
+              Doces que<br />contam histórias.
             </h1>
             <p className="max-w-md text-base text-muted-foreground md:text-lg">
-              Áudio, wearables e computadores de alto desempenho — selecionados com cuidado,
-              entregues sem complicação.
+              Macarons, trufas, bolos e croissants preparados à mão, com ingredientes
+              selecionados e entregues fresquinhos na sua porta.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="rounded-full px-6">
                 <a href="#catalog">
-                  Ver catálogo
+                  Ver vitrine
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </Button>
@@ -67,9 +67,9 @@ const Index = () => {
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border/60 shadow-lg">
             <img
               src={heroImg}
-              alt="Coleção de produtos de tecnologia Nimbus"
+              alt="Seleção de doces artesanais da Maison Doce"
               width={1536}
-              height={768}
+              height={1152}
               className="h-full w-full object-cover"
             />
           </div>
@@ -81,43 +81,26 @@ const Index = () => {
         <div className="mb-8 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              Catálogo
+              Vitrine
             </h2>
             <p className="mt-2 text-muted-foreground">
-              {filtered.length} produto{filtered.length === 1 ? "" : "s"} disponíveis
+              {filtered.length} doce{filtered.length === 1 ? "" : "s"} disponíve{filtered.length === 1 ? "l" : "is"}
             </p>
           </div>
           <div className="flex w-full max-w-md gap-2 md:w-80">
             <Input
-              placeholder="Buscar produtos..."
+              placeholder="Buscar doces..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="h-10 rounded-full border-border/60 bg-card"
             />
           </div>
         </div>
-
-        <div className="mb-8 flex flex-wrap gap-2">
-          {categories.map((c) => (
-            <button
-              key={c}
-              onClick={() => setActiveCategory(c)}
-              className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
-                activeCategory === c
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border/60 bg-card text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-
         {isLoading ? (
           <ProductGridSkeleton />
         ) : filtered.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-border py-16 text-center text-muted-foreground">
-            Nenhum produto encontrado.
+            Nenhum doce encontrado.
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -2,104 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Clean modern e-commerce design system. All colors MUST be HSL. */
+/* Doceria — paleta quente, neutra e elegante. All colors MUST be HSL. */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 20% 12%;
+    /* Cremes e areia */
+    --background: 36 38% 97%;
+    --foreground: 24 18% 14%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 20% 12%;
+    --card: 36 40% 99%;
+    --card-foreground: 24 18% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 20% 12%;
+    --popover: 36 40% 99%;
+    --popover-foreground: 24 18% 14%;
 
-    --primary: 222 24% 14%;
-    --primary-foreground: 0 0% 100%;
+    /* Cacau / café */
+    --primary: 24 28% 22%;
+    --primary-foreground: 36 38% 97%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 24% 14%;
+    --secondary: 33 26% 92%;
+    --secondary-foreground: 24 28% 22%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 33 22% 93%;
+    --muted-foreground: 26 10% 42%;
 
-    --accent: 220 14% 96%;
-    --accent-foreground: 222 24% 14%;
+    /* Caramelo suave */
+    --accent: 28 38% 88%;
+    --accent-foreground: 24 28% 22%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 36 38% 97%;
 
-    --success: 142 71% 38%;
-    --success-foreground: 0 0% 100%;
+    --success: 95 28% 38%;
+    --success-foreground: 36 38% 97%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 35 70% 50%;
+    --warning-foreground: 24 28% 14%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 222 24% 14%;
+    --border: 30 18% 86%;
+    --input: 30 18% 86%;
+    --ring: 24 28% 22%;
 
     --radius: 0.75rem;
 
-    /* Surfaces */
-    --surface: 0 0% 99%;
-    --surface-elevated: 0 0% 100%;
-    --subtle: 220 20% 98%;
+    --surface: 36 38% 98%;
+    --surface-elevated: 36 40% 99%;
+    --subtle: 33 30% 94%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsl(220 30% 99%) 0%, hsl(220 20% 96%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(220 20% 98%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(36 42% 96%) 0%, hsl(30 30% 92%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(36 40% 99%) 0%, hsl(33 26% 95%) 100%);
 
-    /* Shadows — soft, layered */
-    --shadow-xs: 0 1px 2px 0 hsl(220 40% 10% / 0.04);
-    --shadow-sm: 0 1px 3px 0 hsl(220 40% 10% / 0.06), 0 1px 2px -1px hsl(220 40% 10% / 0.04);
-    --shadow-md: 0 4px 12px -2px hsl(220 40% 10% / 0.06), 0 2px 4px -2px hsl(220 40% 10% / 0.04);
-    --shadow-lg: 0 12px 32px -8px hsl(220 40% 10% / 0.10), 0 4px 12px -4px hsl(220 40% 10% / 0.06);
+    --shadow-xs: 0 1px 2px 0 hsl(24 30% 15% / 0.04);
+    --shadow-sm: 0 1px 3px 0 hsl(24 30% 15% / 0.06), 0 1px 2px -1px hsl(24 30% 15% / 0.04);
+    --shadow-md: 0 4px 12px -2px hsl(24 30% 15% / 0.06), 0 2px 4px -2px hsl(24 30% 15% / 0.04);
+    --shadow-lg: 0 12px 32px -8px hsl(24 30% 15% / 0.10), 0 4px 12px -4px hsl(24 30% 15% / 0.06);
 
-    /* Transitions */
     --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 36 38% 97%;
+    --sidebar-foreground: 24 18% 20%;
+    --sidebar-primary: 24 28% 22%;
+    --sidebar-primary-foreground: 36 38% 97%;
+    --sidebar-accent: 33 26% 92%;
+    --sidebar-accent-foreground: 24 28% 22%;
+    --sidebar-border: 30 18% 86%;
+    --sidebar-ring: 24 28% 22%;
   }
 
   .dark {
-    --background: 222 24% 8%;
-    --foreground: 210 20% 98%;
-    --card: 222 24% 10%;
-    --card-foreground: 210 20% 98%;
-    --popover: 222 24% 10%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 222 24% 14%;
-    --secondary: 217 18% 16%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 217 18% 16%;
-    --muted-foreground: 215 16% 65%;
-    --accent: 217 18% 16%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --success: 142 60% 45%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 90% 55%;
-    --warning-foreground: 0 0% 100%;
-    --border: 217 18% 18%;
-    --input: 217 18% 18%;
-    --ring: 210 20% 98%;
-    --surface: 222 24% 9%;
-    --surface-elevated: 222 24% 11%;
-    --subtle: 222 24% 10%;
-    --gradient-hero: linear-gradient(180deg, hsl(222 24% 10%) 0%, hsl(222 24% 8%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(222 24% 10%) 0%, hsl(222 24% 8%) 100%);
+    --background: 24 14% 9%;
+    --foreground: 36 30% 94%;
+    --card: 24 14% 11%;
+    --card-foreground: 36 30% 94%;
+    --popover: 24 14% 11%;
+    --popover-foreground: 36 30% 94%;
+    --primary: 36 30% 94%;
+    --primary-foreground: 24 28% 14%;
+    --secondary: 24 10% 18%;
+    --secondary-foreground: 36 30% 94%;
+    --muted: 24 10% 18%;
+    --muted-foreground: 30 10% 65%;
+    --accent: 24 12% 22%;
+    --accent-foreground: 36 30% 94%;
+    --destructive: 0 55% 45%;
+    --destructive-foreground: 36 30% 94%;
+    --success: 95 28% 48%;
+    --success-foreground: 36 30% 94%;
+    --warning: 35 70% 55%;
+    --warning-foreground: 24 28% 14%;
+    --border: 24 10% 20%;
+    --input: 24 10% 20%;
+    --ring: 36 30% 94%;
+    --surface: 24 14% 10%;
+    --surface-elevated: 24 14% 12%;
+    --subtle: 24 12% 12%;
+    --gradient-hero: linear-gradient(180deg, hsl(24 14% 11%) 0%, hsl(24 14% 9%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(24 14% 11%) 0%, hsl(24 14% 9%) 100%);
   }
 }
 
@@ -116,8 +115,4 @@
   h1, h2, h3, h4, h5 {
     @apply tracking-tight;
   }
-}
-
-html {
-    scroll-behavior: smooth;
 }

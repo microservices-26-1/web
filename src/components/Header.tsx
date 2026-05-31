@@ -32,13 +32,13 @@ export function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between gap-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-lg bg-foreground" aria-hidden />
-          <span className="font-display text-lg font-semibold tracking-tight">Nimbus</span>
+          <div className="h-7 w-7 rounded-full bg-foreground" aria-hidden />
+          <span className="font-display text-lg font-semibold tracking-tight">Maison Doce</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           <NavLink to="/" end className={navClass}>
-            Catálogo
+            Vitrine
           </NavLink>
           <NavLink to="/orders" className={navClass}>
             Pedidos
@@ -51,8 +51,8 @@ export function Header() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="USD">USD</SelectItem>
               <SelectItem value="BRL">BRL</SelectItem>
+              <SelectItem value="USD">USD</SelectItem>
               <SelectItem value="EUR">EUR</SelectItem>
             </SelectContent>
           </Select>
@@ -71,7 +71,7 @@ export function Header() {
             aria-label={`Carrinho com ${count} itens`}
           >
             <ShoppingBag className="h-[18px] w-[18px]" />
-            <span className="font-medium">{user ? count : 0}</span>
+            <span className="font-medium">{count}</span>
           </Link>
 
           {user ? (

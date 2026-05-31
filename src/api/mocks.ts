@@ -1,82 +1,95 @@
 import { Product, Order, ExchangeRate } from "@/types";
-import headphones from "@/assets/product-headphones.jpg";
-import watch from "@/assets/product-watch.jpg";
-import laptop from "@/assets/product-laptop.jpg";
-import phone from "@/assets/product-phone.jpg";
-import speaker from "@/assets/product-speaker.jpg";
-import earbuds from "@/assets/product-earbuds.jpg";
+import macarons from "@/assets/product-macarons.jpg";
+import truffles from "@/assets/product-truffles.jpg";
+import cake from "@/assets/product-cake.jpg";
+import croissant from "@/assets/product-croissant.jpg";
+import brigadeiro from "@/assets/product-brigadeiro.jpg";
+import eclair from "@/assets/product-eclair.jpg";
+import cookies from "@/assets/product-cookies.jpg";
 
 export const mockProducts: Product[] = [
   {
     id: "p-001",
-    name: "Aurora Headphones",
+    name: "Caixa de Macarons",
     description:
-      "Fones over-ear com cancelamento ativo de ruído, 40h de bateria e drivers de 40mm para áudio cristalino em qualquer ambiente.",
-    price: 299,
-    currency: "USD",
+      "Seleção de 9 macarons artesanais nos sabores baunilha, caramelo salgado, pistache, chocolate belga e frutas vermelhas. Massa crocante e recheio cremoso.",
+    price: 68,
+    currency: "BRL",
     stock: 24,
-    category: "Áudio",
-    image: headphones,
-    rating: 4.8,
+    category: "Macarons",
+    image: macarons,
+    rating: 4.9,
   },
   {
     id: "p-002",
-    name: "Pulse Watch S2",
+    name: "Trufas de Chocolate 70%",
     description:
-      "Smartwatch leve com GPS integrado, monitor cardíaco contínuo e até 7 dias de bateria. Resistente a água até 50m.",
-    price: 399,
-    currency: "USD",
-    stock: 12,
-    category: "Wearables",
-    image: watch,
-    rating: 4.6,
+      "Trufas de ganache feitas com chocolate intenso 70% cacau e finalizadas com cacau em pó. Caixa com 12 unidades.",
+    price: 54,
+    currency: "BRL",
+    stock: 30,
+    category: "Chocolates",
+    image: truffles,
+    rating: 4.8,
   },
   {
     id: "p-003",
-    name: "Stratus Book Pro",
+    name: "Bolo de Cenoura com Brigadeiro",
     description:
-      "Notebook ultrafino de 14\" com chip de nova geração, 16GB de RAM e tela retina anti-reflexo. Ideal para criadores.",
-    price: 1599,
-    currency: "USD",
+      "Bolo de cenoura fofinho coberto com calda de brigadeiro cremoso. Receita de família, feito no dia. Serve 10 pessoas.",
+    price: 89,
+    currency: "BRL",
     stock: 6,
-    category: "Computadores",
-    image: laptop,
+    category: "Bolos",
+    image: cake,
     rating: 4.9,
   },
   {
     id: "p-004",
-    name: "Nimbus Phone X",
+    name: "Croissants de Manteiga",
     description:
-      "Smartphone com câmera tripla profissional, tela OLED 120Hz e bateria de longa duração em corpo de alumínio.",
-    price: 899,
-    currency: "USD",
+      "Croissants folhados com manteiga francesa, fermentação lenta e assados ao ponto. Pacote com 4 unidades, ideais para o café da manhã.",
+    price: 42,
+    currency: "BRL",
     stock: 18,
-    category: "Smartphones",
-    image: phone,
+    category: "Padaria",
+    image: croissant,
     rating: 4.7,
   },
   {
     id: "p-005",
-    name: "Echo Mini Speaker",
+    name: "Brigadeiros Gourmet",
     description:
-      "Caixa de som portátil com som 360°, conexão multipoint e bateria para 18 horas de música.",
-    price: 129,
-    currency: "USD",
+      "Brigadeiros artesanais feitos com chocolate belga e leite condensado. Caixa com 16 unidades em forminhas de papel.",
+    price: 48,
+    currency: "BRL",
     stock: 41,
-    category: "Áudio",
-    image: speaker,
-    rating: 4.4,
+    category: "Doces",
+    image: brigadeiro,
+    rating: 4.6,
   },
   {
     id: "p-006",
-    name: "Aurora Buds",
+    name: "Éclair de Chocolate",
     description:
-      "Earbuds true wireless com cancelamento adaptativo, áudio espacial e estojo com carregamento sem fio.",
-    price: 199,
-    currency: "USD",
-    stock: 33,
-    category: "Áudio",
-    image: earbuds,
+      "Massa choux clássica recheada com creme pâtissière de baunilha e cobertura de chocolate meio amargo.",
+    price: 18,
+    currency: "BRL",
+    stock: 22,
+    category: "Doces",
+    image: eclair,
+    rating: 4.7,
+  },
+  {
+    id: "p-007",
+    name: "Cookies de Canela",
+    description:
+      "Cookies macios por dentro e crocantes nas bordas, com canela e açúcar mascavo. Pacote com 8 unidades.",
+    price: 32,
+    currency: "BRL",
+    stock: 38,
+    category: "Padaria",
+    image: cookies,
     rating: 4.5,
   },
 ];
@@ -86,38 +99,39 @@ export const mockOrders: Order[] = [
     id: "ord-1042",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(),
     status: "delivered",
-    currency: "USD",
-    total: 498,
+    currency: "BRL",
+    total: 122,
     lines: [
-      { productId: "p-001", productName: "Aurora Headphones", quantity: 1, unitPrice: 299 },
-      { productId: "p-006", productName: "Aurora Buds", quantity: 1, unitPrice: 199 },
+      { productId: "p-001", productName: "Caixa de Macarons", quantity: 1, unitPrice: 68 },
+      { productId: "p-002", productName: "Trufas de Chocolate 70%", quantity: 1, unitPrice: 54 },
     ],
   },
   {
     id: "ord-1051",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 7).toISOString(),
     status: "shipped",
-    currency: "USD",
-    total: 1599,
+    currency: "BRL",
+    total: 89,
     lines: [
-      { productId: "p-003", productName: "Stratus Book Pro", quantity: 1, unitPrice: 1599 },
+      { productId: "p-003", productName: "Bolo de Cenoura com Brigadeiro", quantity: 1, unitPrice: 89 },
     ],
   },
   {
     id: "ord-1063",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(),
     status: "pending",
-    currency: "USD",
-    total: 528,
+    currency: "BRL",
+    total: 138,
     lines: [
-      { productId: "p-005", productName: "Echo Mini Speaker", quantity: 2, unitPrice: 129 },
-      { productId: "p-002", productName: "Pulse Watch S2", quantity: 1, unitPrice: 399 },
+      { productId: "p-005", productName: "Brigadeiros Gourmet", quantity: 2, unitPrice: 48 },
+      { productId: "p-004", productName: "Croissants de Manteiga", quantity: 1, unitPrice: 42 },
     ],
   },
 ];
 
+// Taxas com base em BRL (moeda principal da doceria)
 export const mockRates: ExchangeRate[] = [
-  { base: "USD", target: "BRL", rate: 5.05 },
-  { base: "USD", target: "EUR", rate: 0.92 },
-  { base: "USD", target: "USD", rate: 1 },
+  { base: "BRL", target: "BRL", rate: 1 },
+  { base: "BRL", target: "USD", rate: 0.2 },
+  { base: "BRL", target: "EUR", rate: 0.18 },
 ];

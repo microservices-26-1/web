@@ -16,7 +16,7 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
-const API = "http://localhost:8080";
+const API = "http://a6c921684d53b4c6cbd9ea9ae98dad94-1227256263.us-east-1.elb.amazonaws.com";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);

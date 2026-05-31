@@ -31,7 +31,7 @@ const Orders = () => {
   const { format } = useCurrency();
 
   useEffect(() => {
-    document.title = "Meus pedidos — Nimbus";
+    document.title = "Meus pedidos — Maison Doce";
   }, []);
 
   return (
@@ -58,7 +58,7 @@ const Orders = () => {
           </div>
           <p className="mt-4 text-muted-foreground">Você ainda não fez nenhum pedido.</p>
           <Button asChild className="mt-6 rounded-full">
-            <Link to="/">Ver catálogo</Link>
+            <Link to="/">Ver vitrine</Link>
           </Button>
         </div>
       ) : (

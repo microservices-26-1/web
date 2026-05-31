@@ -1,26 +1,31 @@
 import { createContext, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 import { exchangeApi } from "@/api/client";
-import { ExchangeRate } from "@/types";
 
 interface CurrencyContextValue {
   currency: string;
   setCurrency: (c: string) => void;
-  rates: ExchangeRate[];
-  format: (priceInUsd: number) => string;
-  convert: (priceInUsd: number) => number;
+  format: (priceInBrl: number) => string;
+  convert: (priceInBrl: number) => number;
 }
 
+const BASE = "BRL";
+const TARGETS = ["BRL", "USD", "EUR"];
+const STORAGE_KEY = "doceria.currency";
+
 const CurrencyContext = createContext<CurrencyContextValue | undefined>(undefined);
-const STORAGE_KEY = "nimbus.currency";
 
 export function CurrencyProvider({ children }: { children: ReactNode }) {
   const [currency, setCurrencyState] = useState<string>(
-    () => localStorage.getItem(STORAGE_KEY) ?? "USD"
+    () => localStorage.getItem(STORAGE_KEY) ?? BASE
   );
-  const [rates, setRates] = useState<ExchangeRate[]>([]);
+  const [rates, setRates] = useState<Record<string, number>>({ BRL: 1 });
 
   useEffect(() => {
-    exchangeApi.rates("USD").then(setRates).catch(() => setRates([]));
+    Promise.all(
+      TARGETS.map((t) =>
+        exchangeApi.get(BASE, t).then((r) => [t, r.rate] as const).catch(() => [t, 1] as const)
+      )
+    ).then((entries) => setRates(Object.fromEntries(entries)));
   }, []);
 
   const setCurrency = (c: string) => {
@@ -29,18 +34,16 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
   };
 
   const value = useMemo<CurrencyContextValue>(() => {
-    const rate = rates.find((r) => r.target === currency)?.rate ?? 1;
+    const rate = rates[currency] ?? 1;
     return {
       currency,
       setCurrency,
-      rates,
-      convert: (priceInUsd) => priceInUsd * rate,
-      format: (priceInUsd) =>
-        new Intl.NumberFormat(currency === "BRL" ? "pt-BR" : currency === "EUR" ? "de-DE" : "en-US", {
-          style: "currency",
-          currency,
-          maximumFractionDigits: 2,
-        }).format(priceInUsd * rate),
+      convert: (priceInBrl) => priceInBrl * rate,
+      format: (priceInBrl) =>
+        new Intl.NumberFormat(
+          currency === "BRL" ? "pt-BR" : currency === "EUR" ? "de-DE" : "en-US",
+          { style: "currency", currency, maximumFractionDigits: 2 }
+        ).format(priceInBrl * rate),
     };
   }, [currency, rates]);
 
